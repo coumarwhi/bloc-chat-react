@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import * as firebase from 'firebase';
 
 class RoomList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      rooms: []
+      rooms: [],
+      newRoomName: ''
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -19,12 +19,28 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat( room ) })
     });
   }
+
+  createRoom(e) {
+    this.roomsRef.push({
+      name: this.state.newRoomName
+      });
+    }
+
+  handleChange(e) {
+    this.setState({ newRoomName: e.target.value })
+  }
  
   render() {
     return (
-      this.state.rooms.map((room, index) => {
-      return <p key={index}>{room.name}</p>
-      })
+      <div className="room-list">
+        { this.state.rooms.map((room, index) => {
+          return <p key={index}>{room.name}</p>
+        })}
+        <form onSubmit={ (e) => this.createRoom(e) }>
+          <input type="text" value={ this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
+          <input type="submit" />
+        </form>
+      </div>
     )
   }
 }
