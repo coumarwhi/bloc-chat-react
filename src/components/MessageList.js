@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
 import * as firebase from 'firebase';
->>>>>>> list-messages
 
 class MessageList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
-      messages: [], 
-    }
-  }
-=======
       messages: [],
       content: '',
       sentAt: '',
@@ -24,30 +16,11 @@ class MessageList extends Component {
     this.createMessage = this.createMessage.bind(this);
     this.messageContent = this.messageContent.bind(this);
   };
->>>>>>> list-messages
 
   componentDidMount() {
     this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-<<<<<<< HEAD
-      this.setState({ messages: this.state.rooms.concat( message ) })
-    });
-  }
-
-  Render() {
-    return (
-      <div className="message-list">
-          { this.state.messages.map((message, index) => {
-          return <p key={index}>{message.name}</p>
-        })}
-      </div>
-    )
-  }
-}
-
-export default MessageList;
-=======
       this.setState({ messages: this.state.messages.concat( message ) })
     });
   }
@@ -108,4 +81,3 @@ export default MessageList;
 
 export default MessageList
 
->>>>>>> list-messages
