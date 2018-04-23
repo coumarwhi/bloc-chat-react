@@ -55,6 +55,7 @@ setUser(user) {
         <MessageList
           firebase={firebase}
           activeRoom = {this.state.activeRoom.key} 
+          currentUser = {currentUser}
         />
         : null }
       </div>
