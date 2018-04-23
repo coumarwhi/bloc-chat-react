@@ -9,7 +9,8 @@ class MessageList extends Component {
       messages: [],
       content: '',
       sentAt: '',
-      roomId: ''
+      roomId: '',
+      username: ''
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
@@ -32,6 +33,7 @@ class MessageList extends Component {
         content: e.target.value,
         sentAt: firebase.database.ServerValue.TIMESTAMP,
         roomId: this.props.activeRoom,
+        username: this.props.currentUser
       }
     )
   }
@@ -43,6 +45,7 @@ class MessageList extends Component {
         content: this.state.content,
         sentAt: this.state.sentAt,
         roomId: this.state.roomId,
+        username: this.props.currentUser
       }
     );
     this.setState ({
